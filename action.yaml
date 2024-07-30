@@ -1,0 +1,11 @@
+---
+name: Job Definition Container Tag Checker
+author: Alan B. Christie
+description: Checks container references in a repository
+branding:
+  icon: play
+  color: orange
+
+runs:
+  using: docker
+  image: Dockerfile
