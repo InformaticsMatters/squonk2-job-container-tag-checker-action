@@ -67,7 +67,7 @@ def check() -> None:
             for line_no, line in enumerate(file, start=1):
                 if container_match := NEXTFLOW_CONTAINER_PATTERN.match(line):
                     if itag := container_match.group("itag"):
-                        tag_match: re.Match = VALID_IMAGE_TAG_PATTERN.match(itag)
+                        tag_match = VALID_IMAGE_TAG_PATTERN.match(itag)
                         if not tag_match:
                             error(f"Invalid container tag '{itag}' in {nf_file}:{line_no}")
                     else:
