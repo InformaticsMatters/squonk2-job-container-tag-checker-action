@@ -6,3 +6,5 @@
   language: docker
   pass_filenames: false
   require_serial: true
+  always_run: true
+  stages: [pre-commit]
