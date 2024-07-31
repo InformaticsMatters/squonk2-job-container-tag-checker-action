@@ -1,4 +1,4 @@
-# A job definition container tag checker action
+# A job definition image tag checker action
 A GitHub Action that is used to check Squonk2 Job Definition repositories to
 check the validity of container image tags found in Job Definition and
 Nextflow files.
@@ -25,10 +25,10 @@ need to add a `.pre-commit-config.yaml` file to the root of the repository you w
 use the pre-commit hook in with the following `repo` definition: -
 
 ```yaml
-- repo: https://github.com/InformaticsMatters/squonk2-job-container-tag-checker-action
-  rev: 1.0.0-alpha.3
+- repo: https://github.com/InformaticsMatters/squonk2-job-image-tag-checker-action
+  rev: 1.0.0-alpha.5
   hooks:
-  - id: squonk2-job-container-tag-checker
+  - id: squonk2-job-image-tag-checker
 ```
 
 ---

@@ -1,7 +1,7 @@
 ---
-- id: squonk2-job-container-tag-checker
-  name: A job definition container tag checker
-  description: This hook checks container versions in job definitions
+- id: squonk2-job-image-tag-checker
+  name: Squonk2 job image tag checker
+  description: This hook checks image tags in job and nextflow definitions
   entry: /entrypoint.sh
   language: docker
   pass_filenames: false
