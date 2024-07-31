@@ -1,5 +1,8 @@
 # A job definition image tag checker action
 
+[![build](https://github.com/informaticsmatters/squonk2-job-image-tag-checker-action/actions/workflows/build.yaml/badge.svg)](https://github.com/informaticsmatters/squonk2-job-image-tag-checker-action/actions/workflows/build.yaml)
+
+
 ![GitHub Tag](https://img.shields.io/github/v/tag/informaticsmatters/squonk2-job-image-tag-checker-action)
 
 [![Conventional Commits](https://img.shields.io/badge/Conventional%20Commits-1.0.0-yellow.svg)](https://conventionalcommits.org)
