@@ -2,7 +2,7 @@
 - id: squonk2-job-container-tag-checker
   name: A job definition container tag checker
   description: This hook checks container versions in job definitions
-  entry: entrypoint.sh
+  entry: /entrypoint.sh
   language: docker
   pass_filenames: false
   require_serial: true
