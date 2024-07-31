@@ -1,5 +1,5 @@
 ---
-- id: squonk2-container-tag-checker
+- id: squonk2-job-container-tag-checker
   name: A job definition container tag checker
   description: This hook checks container versions in job definitions
   entry: entrypoint.sh
