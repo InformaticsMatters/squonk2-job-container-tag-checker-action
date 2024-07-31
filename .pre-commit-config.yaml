@@ -1,0 +1,57 @@
+---
+minimum_pre_commit_version: 3.3.3
+
+repos:
+
+# commit-msg hooks
+# ----------
+
+# Conventional Commit message checker (commitizen)
+- repo: https://github.com/commitizen-tools/commitizen
+  rev: v3.28.0
+  hooks:
+  - id: commitizen
+    stages:
+    - commit-msg
+
+# pre-commit hooks
+# ----------
+
+# Standard pre-commit rules
+- repo: https://github.com/pre-commit/pre-commit-hooks
+  rev: v4.6.0
+  hooks:
+  - id: check-case-conflict
+  - id: check-docstring-first
+  - id: check-executables-have-shebangs
+  - id: check-shebang-scripts-are-executable
+  - id: detect-private-key
+  - id: end-of-file-fixer
+  - id: trailing-whitespace
+    args:
+    - --markdown-linebreak-ext=md
+# Black (uncompromising) Python code formatter
+- repo: https://github.com/psf/black
+  rev: 24.4.2
+  hooks:
+  - id: black
+    args:
+    - --target-version
+    - py312
+# MyPy
+- repo: https://github.com/pre-commit/mirrors-mypy
+  rev: v1.11.1
+  hooks:
+  - id: mypy
+    args:
+    - --install-types
+    - --non-interactive
+# Pylint
+- repo: https://github.com/pycqa/pylint
+  rev: v3.2.6
+  hooks:
+  - id: pylint
+    additional_dependencies:
+    - im-data-manager-job-decoder == 2.1.0
+    - munch >= 4.0.0
+    - pyyaml >= 6.0.1, < 7.0

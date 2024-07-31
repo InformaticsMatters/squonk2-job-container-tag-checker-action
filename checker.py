@@ -1,4 +1,7 @@
 #!/usr/bin/env python
+"""A GitHub docker-based Action to check the image tags in job-definition files.
+The Action can also be used as a pre-commit hook.
+"""
 
 import glob
 import os
@@ -6,10 +9,10 @@ import re
 import sys
 from typing import List
 
-from munch import DefaultMunch
+from munch import DefaultMunch  # type: ignore
 import yaml
 
-from decoder import decoder
+from decoder import decoder  # type: ignore
 
 # The repository we're run in is mounted into the container under /github/workspace,
 # which is the image WORKDIR value - so '.' is the root of the repository to check.
@@ -26,9 +29,11 @@ NEXTFLOW_FILE_GLOB: str = f"{GITHUB_WORKSPACE}/**/*.nf"
 VALID_IMAGE_TAG_PATTERN: re.Pattern = re.compile(r"^[0-9]+\.[0-9]+(\.[0-9]+)?$")
 # What does a nextflow container declaration look like?
 #   container 'informaticsmatters/vs-moldb:latest'
-NEXTFLOW_CONTAINER_PATTERN: re.Pattern = re.compile(r"^\s+container '((?P<iname>\S+)(:(?P<itag>\S+)))?'\s*$")
+NEXTFLOW_CONTAINER_PATTERN: re.Pattern = re.compile(
+    r"^\s+container '((?P<iname>\S+)(:(?P<itag>\S+)))?'\s*$"
+)
 
-# Collected errors
+# Collected errors
 ERRORS: List[str] = []
 
 
@@ -63,7 +68,9 @@ def check() -> None:
                 _, image_tag = decoder.get_image(jd_munch.jobs[jd_name])
                 tag_match = VALID_IMAGE_TAG_PATTERN.match(image_tag)
                 if not tag_match:
-                    msg: str = f"Invalid image tag '{image_tag}' for job '{jd_name}' in {jd_path}"
+                    msg: str = (
+                        f"Invalid image tag '{image_tag}' for job '{jd_name}' in {jd_path}"
+                    )
                     error(msg)
 
     # Process Nextflow files
@@ -75,9 +82,12 @@ def check() -> None:
                     if itag := container_match.group("itag"):
                         tag_match = VALID_IMAGE_TAG_PATTERN.match(itag)
                         if not tag_match:
-                            error(f"Invalid container tag '{itag}' in {nf_file}:{line_no}")
+                            error(
+                                f"Invalid container tag '{itag}' in {nf_file}:{line_no}"
+                            )
                     else:
                         error(f"Missing container tag in {nf_file}:{line_no}")
+
 
 if __name__ == "__main__":
 
