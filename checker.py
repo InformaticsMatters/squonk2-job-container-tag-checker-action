@@ -63,16 +63,15 @@ def check() -> None:
 
     nf_files: List[str] = glob.glob(NEXTFLOW_FILE_GLOB, recursive=True)
     for nf_file in nf_files:
-        short_path: str = nf_file.replace(GITHUB_WORKSPACE, "")
         with open(nf_file, encoding="utf-8") as file:
             for line_no, line in enumerate(file, start=1):
                 if container_match := NEXTFLOW_CONTAINER_PATTERN.match(line):
                     if itag := container_match.group("itag"):
                         tag_match: re.Match = VALID_IMAGE_TAG_PATTERN.match(itag)
                         if not tag_match:
-                            error(f"Invalid container tag '{itag}' on line {line_no} of {short_path}")
+                            error(f"Invalid container tag '{itag}' in {nf_file}:{line_no}")
                     else:
-                        error(f"Missing container tag on line {line_no} of {short_path}")
+                        error(f"Missing container tag in {nf_file}:{line_no}")
 
 check()
 if ERRORS:
