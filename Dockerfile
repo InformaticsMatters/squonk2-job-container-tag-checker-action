@@ -5,3 +5,5 @@ COPY requirements.txt /requirements.txt
 RUN /usr/local/bin/python -m pip install --upgrade pip && \
     pip install -r /requirements.txt
 ENTRYPOINT ["/entrypoint.sh"]
+# The GitHub action mount point for the repository
+WORKDIR /github/workspace

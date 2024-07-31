@@ -11,8 +11,9 @@ import yaml
 
 from decoder import decoder
 
-# The repository we're run in is mounted into the container under /github/workspace.
-GITHUB_WORKSPACE: str = "/Users/alan/Code/InformaticsMatters/virtual-screening"
+# The repository we're run in is mounted into the container under /github/workspace,
+# which is the image WORKDIR value - so '.' is the root of the repository to check.
+GITHUB_WORKSPACE: str = "."
 DM_DIR: str = f"{GITHUB_WORKSPACE}/data-manager"
 MANIFEST_FILE_GLOB: str = f"{DM_DIR}/manifest-*.yaml"
 NEXTFLOW_FILE_GLOB: str = f"{GITHUB_WORKSPACE}/**/*.nf"
