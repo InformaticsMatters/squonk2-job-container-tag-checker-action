@@ -11,10 +11,8 @@ import yaml
 
 from decoder import decoder
 
-# The repository to check is mounted into the container under /github/workspace.
-
-GITHUB_WORKSPACE: str = "/Users/alan/Code/InformaticsMatters/virtual-screening"
-#GITHUB_WORKSPACE: str = "/github/workspace"
+# The repository we're run in is mounted into the container under /github/workspace.
+GITHUB_WORKSPACE: str = "/github/workspace"
 DM_DIR: str = f"{GITHUB_WORKSPACE}/data-manager"
 MANIFEST_FILE_GLOB: str = f"{DM_DIR}/manifest-*.yaml"
 
@@ -59,7 +57,6 @@ def check() -> None:
                 if not tag_match:
                     msg: str = f"Invalid image tag '{image_tag}' for job '{jd_name}'"
                     error(msg)
-
 
 
 check()
